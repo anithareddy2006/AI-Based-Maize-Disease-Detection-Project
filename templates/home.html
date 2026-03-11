@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Maize Disease Detection</title>
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+
+<style>
+
+body{
+background:#f4f6f9;
+font-family:Arial;
+}
+
+.header{
+background:#2e7d32;
+color:white;
+padding:40px;
+text-align:center;
+}
+
+.upload-box{
+background:white;
+padding:40px;
+border-radius:15px;
+box-shadow:0px 5px 20px rgba(0,0,0,0.2);
+margin-top:40px;
+text-align:center;
+}
+
+.file-input{
+margin:15px;
+}
+
+.scan-btn{
+margin-top:10px;
+}
+
+.footer{
+margin-top:80px;
+background:#2e7d32;
+color:white;
+padding:20px;
+text-align:center;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="header">
+<h1>🌽 SwasthDhanya 🌽</h1>
+<p>AI-Based Maize Crop Disease Detection and prediction Platform</p>
+</div>
+
+<div class="container">
+
+<div class="upload-box">
+
+<h4>Upload or Scan Maize Leaf</h4>
+
+<form action="/predict" method="post" enctype="multipart/form-data">
+
+<input type="file" name="file" class="file-input" accept="image/*">
+
+<br>
+
+<label class="btn btn-success scan-btn">
+📷 Scan Maize Leaf
+<input type="file" name="file" accept="image/*" capture="environment" hidden>
+</label>
+
+<br><br>
+
+<input type="submit" value="Predict Disease" class="btn btn-primary">
+
+</form>
+
+<br>
+
+<button onclick="speakInstructions()" class="btn btn-info">
+🔊 Listen Instructions
+</button>
+
+<p style="color:red">{{ error }}</p>
+
+</div>
+
+</div>
+
+<div class="footer">
+<p>AI Based Maize Disease Detection System</p>
+</div>
+
+<script>
+
+function speakInstructions(){
+
+var text = "Welcome. Take a clear photo of maize leaf or upload image to detect disease.";
+
+var speech = new SpeechSynthesisUtterance(text);
+
+speech.lang = "en-US";
+
+window.speechSynthesis.speak(speech);
+
+}
+
+</script>
+
+</body>
+</html>

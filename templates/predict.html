@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Prediction Result</title>
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+
+<style>
+
+body{
+background:#f4f6f9;
+font-family:Arial;
+}
+
+.header{
+background:#2e7d32;
+color:white;
+padding:40px;
+text-align:center;
+}
+
+.result-card{
+display:flex;
+background:white;
+border-radius:15px;
+box-shadow:0px 5px 20px rgba(0,0,0,0.2);
+margin-top:50px;
+padding:30px;
+align-items:center;
+}
+
+.crop-img{
+width:320px;
+height:320px;
+object-fit:cover;
+border-radius:10px;
+margin-right:40px;
+}
+
+.details p{
+font-size:20px;
+margin-bottom:15px;
+}
+
+.try-btn{
+margin-top:20px;
+padding:10px 30px;
+border:none;
+background:#2e7d32;
+color:white;
+border-radius:25px;
+}
+
+.try-btn:hover{
+background:#1b5e20;
+}
+
+.footer{
+margin-top:80px;
+background:#2e7d32;
+color:white;
+padding:20px;
+text-align:center;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="header">
+<h1>🌽 SwasthDhanya 🌽</h1>
+<p>AI-Based Maize Crop Disease Detection and prediction Platform</p>
+</div>
+
+<div class="container">
+
+<div class="result-card">
+
+<img src="{{ user_image }}" class="crop-img">
+
+<div class="details">
+
+<p><b>Disease Found :</b> {{ disease_name }}</p>
+
+<p><b>Prediction Accuracy :</b> {{ accuracy }}%</p>
+
+<p><b>Recommended Treatment :</b></p>
+
+<ul>
+<li>{{ preventive_measures }}</li>
+<li>Remove infected leaves from field</li>
+<li>Apply suitable fungicide spray</li>
+<li>Maintain proper crop hygiene</li>
+</ul>
+
+<button onclick="speakResult()" class="btn btn-info">
+🔊 Hear Result
+</button>
+
+<br><br>
+
+<a href="{{ url_for('home') }}">
+<button class="try-btn">Scan Another Leaf</button>
+</a>
+
+</div>
+
+</div>
+
+</div>
+
+<div class="footer">
+<p>AI Based Maize Disease Detection System</p>
+</div>
+
+<script>
+
+function speakResult(){
+
+var text = "The detected maize disease is {{ disease_name }}. Recommended treatment is {{ preventive_measures }}";
+
+var speech = new SpeechSynthesisUtterance(text);
+
+speech.lang = "en-US";
+
+window.speechSynthesis.speak(text);
+
+}
+
+</script>
+
+</body>
+</html>
